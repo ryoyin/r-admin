@@ -8,7 +8,8 @@ import Typography from '@mui/material/Typography';
 const App = () => {
   const site = {
     "name": process.env.REACT_APP_SITE_NAME,
-    "description": process.env.REACT_APP_DESCRIPTION
+    "description": process.env.REACT_APP_DESCRIPTION,
+    "drawer_width": parseInt(process.env.REACT_APP_DRAWER_WIDTH)
   }
 
   return (
