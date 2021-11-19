@@ -6,6 +6,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
 import Toolbar from '@mui/material/Toolbar';
+import { Link } from 'react-router-dom';
 
 const DrawerItem = () => {
     return (
@@ -13,24 +14,26 @@ const DrawerItem = () => {
             <Toolbar />
             <Divider />
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                    <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
-            <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                    <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                    </ListItem>
+                {[
+                    {
+                        "name": "Home",
+                        "path": "",
+                        "icon": <InboxIcon />
+                    },
+                    {
+                        "name": "Users",
+                        "path": "users",
+                        "icon": <InboxIcon />
+                    }
+                ].map((url, index) => (
+                    <Link to ={url.path}>
+                        <ListItem button key={url.name}>                        
+                            <ListItemIcon>
+                                {url.icon}    
+                            </ListItemIcon>
+                            <ListItemText primary={url.name} />
+                        </ListItem>
+                    </Link>
                 ))}
             </List>
         </div>
