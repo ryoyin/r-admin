@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Home",
+        "path": "",
+        "icon": "HomeIcon"
+    },
+    {
+        "name": "Bootcamps",
+        "path": "/bootcamps",
+        "icon": "SchoolIcon"
+    },
+    {
+        "name": "Courses",
+        "path": "/courses",
+        "icon": "ClassIcon"
+    },
+    {
+        "name": "Preview",
+        "path": "",
+        "icon": "PreviewIcon"
+    },
+    {
+        "name": "Users",
+        "path": "users",
+        "icon": "GroupIcon"
+    }
+]
