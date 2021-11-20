@@ -15,8 +15,8 @@
         "icon": "ClassIcon"
     },
     {
-        "name": "Preview",
-        "path": "",
+        "name": "Review",
+        "path": "/review",
         "icon": "PreviewIcon"
     },
     {
