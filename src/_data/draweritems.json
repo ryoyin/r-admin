@@ -1,7 +1,7 @@
 [
     {
         "name": "Home",
-        "path": "",
+        "path": "/",
         "icon": "HomeIcon"
     },
     {
@@ -16,12 +16,12 @@
     },
     {
         "name": "Review",
-        "path": "/review",
+        "path": "/reviews",
         "icon": "PreviewIcon"
     },
     {
         "name": "Users",
-        "path": "users",
+        "path": "/users",
         "icon": "GroupIcon"
     }
 ]

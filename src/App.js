@@ -4,8 +4,11 @@ import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import Layout from './component/layout'
 import { SiteProvider } from './context/SiteContext'
-import Home from './routes/Home';
-import Users from './routes/Users';
+import Home from './pages/home';
+import Bootcamps from './pages/bootcamps';
+import Courses from './pages/courses';
+import Reviews from './pages/reviews';
+import Users from './pages/users';
 
 const App = () => {
   const site = {
@@ -16,12 +19,17 @@ const App = () => {
 
   return (
     <SiteProvider value={site}>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="users" element={<Users />} />
-        </Routes>        
-      </Layout>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/bootcamps" element={<Bootcamps />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="*" element={<>Sorry! 404 not found!</>} />
+        <Route path="/user/login" element={<>Suser login</>} />
+        <Route path="/user/register"></Route>
+        <Route path="/user/detail"></Route>
+      </Routes>        
     </SiteProvider>
   );
 }

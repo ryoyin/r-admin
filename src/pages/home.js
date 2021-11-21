@@ -1,8 +1,9 @@
+import Layout from '../component/layout'
 import Typography from '@mui/material/Typography';
 
 const Home = () => {
     return (
-        <>
+        <Layout>
             <Typography paragraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
@@ -30,7 +31,7 @@ const Home = () => {
             eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
             posuere sollicitudin aliquam ultrices sagittis orci a.
             </Typography>
-        </>
+        </Layout>
     )
 }
 

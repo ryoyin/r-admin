@@ -12,7 +12,7 @@ import draweritems from '../../_data/draweritems.json'
 const DrawerItem = () => {
     return (
         <div>
-            <Toolbar>MERN Sample</Toolbar>
+            <Toolbar>MERN</Toolbar>
             <Divider />
             <List>
                 {draweritems.map((application, index) => (
