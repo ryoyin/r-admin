@@ -16,7 +16,7 @@ const LeftDrawer = (props) => {
         <Box
             component="nav"
             sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-            aria-label="mailbox folders"
+            aria-label="mailbox folders"            
         >
             {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
             <Drawer
@@ -29,7 +29,7 @@ const LeftDrawer = (props) => {
                 }}
                 sx={{
                     display: { xs: 'block', sm: 'none' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, background: '#143a4f', color: '#dddddd' },
                 }}
             >
                 <DrawerItem />
@@ -38,7 +38,7 @@ const LeftDrawer = (props) => {
                 variant="permanent"
                 sx={{
                     display: { xs: 'none', sm: 'block' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, background: '#143a4f', color: '#dddddd' },
                 }}
                 open
             >

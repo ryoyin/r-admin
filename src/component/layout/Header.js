@@ -5,11 +5,17 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import SiteContext from '../../context/SiteContext';
 import AppBar from '@mui/material/AppBar';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const Header = ({handleDrawerToggle}) => {
 
   const site = useContext(SiteContext)
   const drawerWidth = site.drawer_width;
+
+  const toolbarStyle = {
+    background: '#ffffff',
+    color: '#000000'
+  }
 
   return (
     <AppBar
@@ -19,7 +25,7 @@ const Header = ({handleDrawerToggle}) => {
           ml: { sm: `${drawerWidth}px` },
         }}
       >
-      <Toolbar>
+      <Toolbar style={toolbarStyle}>
         <IconButton
           color="inherit"
           aria-label="open drawer"
@@ -29,9 +35,14 @@ const Header = ({handleDrawerToggle}) => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap component="div">
-          { site.name }
-        </Typography>
+        <div style={{ display: 'flex', width: '100%' }}>
+          <Typography variant="h6" noWrap component="div" style={{flexGrow: '1'}}>
+            { site.name }
+          </Typography>
+          <Typography noWrap component="div" style={{flexGrow: '1', verticalAlign: 'middle', fontSize: '12px', position: 'relative', top: '8px'}} align="right">
+            <LogoutIcon style={{ position: 'relative', top: '4px', fontSize: '18px' }}/> Logout
+          </Typography>
+        </div>
       </Toolbar>
     </AppBar>
   )

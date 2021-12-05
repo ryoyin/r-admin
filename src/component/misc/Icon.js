@@ -14,7 +14,7 @@ const Icon = ({iconname}) => {
     }
 
     let MyComponent = IconComponent[iconname]
-    return <MyComponent />;
+    return <MyComponent style={{color: '#4380a1'}}/>;
 }
 
 export default Icon

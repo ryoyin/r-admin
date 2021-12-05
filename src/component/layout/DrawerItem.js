@@ -10,9 +10,17 @@ import Icon from '../misc/Icon'
 import draweritems from '../../_data/draweritems.json'
 
 const DrawerItem = () => {
+
+    const logoStyle = {
+        width: '100%',
+        padding: '20px 20px 10px'
+    }
+
     return (
         <div>
-            <Toolbar>MERN</Toolbar>
+            <Toolbar>
+                <img src='./mern_icon.png' style={logoStyle} />
+            </Toolbar>
             <Divider />
             <List>
                 {draweritems.map((application, index) => (
