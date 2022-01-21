@@ -19,7 +19,7 @@ const DrawerItem = () => {
     return (
         <div>
             <Toolbar>
-                <img src='./mern_icon.png' style={logoStyle} />
+                <img src='/mern_icon.png' style={logoStyle} />
             </Toolbar>
             <Divider />
             <List>

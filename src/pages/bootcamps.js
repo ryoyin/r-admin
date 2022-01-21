@@ -28,25 +28,43 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import { AllCheckerCheckbox, Checkbox, CheckboxGroup } from '@createnl/grouped-checkboxes';
 
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
 const Bootcamp = () => {
     const [bootcamps, setBootcamps] = useState([])
     const [pageSize, setPageSize] = useState(25)
+    const [checkboxes, setCheckboxes] = useState([])
+
+    async function getBootcamps() {
+        await axios.get('http://localhost:9000/api/v1/bootcamps')
+        .then(function (response) {
+            // handle success
+            let bootcamps = response.data.data
+            
+            setBootcamps(bootcamps)
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+    }
+
+    async function removeBootcamp(bootcampID) {
+        // {{URL}}/api/v1/bootcamps/5d725a1b7b292f5f8ceff788
+        await axios.delete(`http://localhost:9000/api/v1/bootcamps/${bootcampID}`)
+        .then(function() {
+            getBootcamps()
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+    }
 
     useEffect(() => { 
         // make request for bootcamps
-        async function getBootcamps() {
-            await axios.get('http://localhost:9000/api/v1/bootcamps')
-                .then(function (response) {
-                    // handle success
-                    let bootcamps = response.data.data
-                    
-                    setBootcamps(bootcamps)
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                })
-        }
 
         getBootcamps()
     }, []);
@@ -91,12 +109,34 @@ const Bootcamp = () => {
     }
 
     const tableToolbarItemStyle = {
-        flexGrow: "1",
+        flexGrow: "1"
     }
 
     const onCheckboxChange = (checkboxes) => {
         console.log(checkboxes);
+        setCheckboxes(checkboxes)
     }  
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const actionClicked = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    const massRemoveBtn = () => {
+        console.log(checkboxes)
+        setAnchorEl(null)
+        const checkedBoxes = checkboxes.filter(function(checkbox) {
+            return checkbox.checked == true
+        })
+        console.log(checkedBoxes)
+
+        checkedBoxes.forEach(function(item) {
+            removeBootcamp(item.id)
+        })
+    }
 
     return (
         <Layout>
@@ -116,7 +156,29 @@ const Bootcamp = () => {
                                 <TableCell colSpan="6">
                                     <div style={tableToolbarStyle}>
                                         <div style={tableToolbarItemStyle}><FilterListIcon style={verticalAlign} /></div>
-                                        <div style={tableToolbarItemStyle} align="right"><MoreVertIcon style={verticalAlign} /></div>
+                                        <div style={tableToolbarItemStyle} align="right">
+                                            {/* <MoreVertIcon style={verticalAlign, {cursor: "pointer"}} /> */}
+                                            <Button
+                                                id="basic-button"
+                                                aria-controls="basic-menu"
+                                                aria-haspopup="true"
+                                                aria-expanded={open ? 'true' : undefined}
+                                                onClick={actionClicked}
+                                            >
+                                                Actions
+                                            </Button>
+                                            <Menu
+                                                id="basic-menu"
+                                                anchorEl={anchorEl}
+                                                open={open}
+                                                onClose={handleClose}
+                                                MenuListProps={{
+                                                'aria-labelledby': 'basic-button',
+                                                }}
+                                            >
+                                                <MenuItem onClick={massRemoveBtn}>Remove</MenuItem>
+                                            </Menu>
+                                        </div>
                                     </div>
                                 </TableCell>
                             </TableRow>
@@ -141,7 +203,9 @@ const Bootcamp = () => {
                                     <TableCell component="th" scope="row" style={verticalAlign}>
                                         <Checkbox id={bootcamp._id} value={bootcamp._id} />
                                     </TableCell>
-                                    <TableCell align="left" style={verticalAlign}>{bootcamp.name}</TableCell>
+                                    <TableCell align="left" style={verticalAlign}>
+                                        <Link href={`/bootcamps/${bootcamp._id}`}>{bootcamp.name}</Link>
+                                    </TableCell>
                                     <TableCell align="left" style={phoneStyle}>{bootcamp.phone}</TableCell>
                                     <TableCell align="left" style={verticalAlign}><a href="mailto:{bootcamp.email}">{bootcamp.email}</a></TableCell>
                                     <TableCell align="right" style={verticalAlign}>${bootcamp.averageCost.toFixed(2)}</TableCell>

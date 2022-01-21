@@ -6,6 +6,7 @@ import Layout from './component/layout'
 import { SiteProvider } from './context/SiteContext'
 import Home from './pages/home';
 import Bootcamps from './pages/bootcamps';
+import BootcampsDetail from './pages/bootcamps/detail';
 import Courses from './pages/courses';
 import Reviews from './pages/reviews';
 import Users from './pages/users';
@@ -22,6 +23,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/bootcamps" element={<Bootcamps />} />
+        <Route path="/bootcamps/:id" element={<BootcampsDetail />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/users" element={<Users />} />
